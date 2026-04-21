@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wiki Product</title>
+
+  <script>
+  try {
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.classList.add("dark");
+    }
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="style.css?v=9" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <h2>Wiki MKB</h2>
+      <div id="menu"></div>
+    </aside>
+
+    <div class="main">
+   <header class="topbar">
+  <div class="header-left">
+  <button id="toggleSidebar" class="toggle-button">☰</button>
+  <img src="assets/logo.png" class="logo-img" />
+  <div class="logo">
+    MKB Wiki
+    <span class="logo-sub">внутренняя база знаний</span>
+  </div>
+</div>
+
+  <div class="header-search">
+    <input type="text" id="searchInput" placeholder="Поиск по базе знаний..." />
+    <button class="search-btn">Найти</button>
+  </div>
+
+  <div class="header-right">
+    <button
+  id="themeToggle"
+  class="toggle-button"
+  onclick="
+    document.documentElement.classList.toggle('dark');
+    const isDark = document.documentElement.classList.contains('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    this.textContent = isDark ? '☀️' : '🌙';
+  "
+>
+  🌙
+</button>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("themeToggle");
+    if (!btn) return;
+
+    const isDark = document.documentElement.classList.contains("dark");
+    btn.textContent = isDark ? "☀️" : "🌙";
+  });
+</script>
+  </div>
+</header>
+
+     <div class="content">
+  <div class="results">
+    <div id="resultsInfo" class="results-info"></div>
+    <div id="results"></div>
+
+    <!-- 👇 ВОТ СЮДА -->
+    <button id="loadMoreButton" class="load-more-button">
+      Показать ещё
+    </button>
+  </div>
+        <div class="page">
+          <button id="backButton" class="back-button">← Назад к результатам</button>
+          <div class="breadcrumbs" id="breadcrumbs">Главная</div>
+          <h1 id="pageTitle">Страница</h1>
+          <div id="pageContent">
+  <div class="welcome">
+    <h2>Добро пожаловать </h2>
+    <p>
+      Это улучшенный поиск по базе знаний Wiki.
+      Вы можете быстро находить статьи, просматривать содержимое и работать с документацией.
+    </p>
+    <p>
+      🔍 Введите запрос в строку поиска  
+      📄 Выберите страницу слева  
+      🌙 Переключите тему для удобства
+    </p>
+  </div>
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="app.js"></script>
+</body>
+</html>
